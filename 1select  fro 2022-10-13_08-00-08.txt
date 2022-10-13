@@ -1,0 +1,6 @@
+1.	select * from patient where age=20 and pssn in(select pssn from checks where dssn in(select dssn from doctor where speciality="opthalmologist"));
+2.	select d.*,count(p.pssn) from doctor d, prescribe p where p.dssn=d.dssn and p.date like "2013%" group by p.dssn having count(p.pssn) > 1;
+3.	select * from doctor where Experience in (select max(Experience) from doctor);
+4.	select p.* from pharma_co p,contract c, pharmacy ph where ph.phname=c.phname and p.pcname=c.pcname and ph.phaddr=p.pcaddr group by c.pcname having count(c.pcname)>=1;
+5.	select d.* from drug d,sell s,contract c where d.tradename=s.tradename and s.phname=c.phname and c.phname="MedLife";
+6.	select s.phname as Pharmacy_name, s.tradename from sell s,pharmacy p, drug d where s.phname=p.phname and d.tradename=s.tradename;
